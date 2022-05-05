@@ -1,6 +1,6 @@
 name: reloadly
-description: Reloadly Dart Sdk.
-version: 1.0.2
+description: Reloadly Dart Sdk.It wraps the reloadly airtime sdk.Helps you generate tokens, get your balance and topup any number in the world.
+version: 1.0.5
 homepage: https://harambeeapps.co.ke
 repository: https://github.com/cosmasken/reloadly
 

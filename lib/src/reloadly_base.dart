@@ -5,6 +5,7 @@ import 'package:dio/dio.dart' as dio;
 String balanceUrl = 'https://topups.reloadly.com/accounts/balance';
 String tokenUrl = 'https://auth.reloadly.com/oauth/token';
 
+
 class Reloadly {
   Future<String> getToken(String client_id, String client_secret) async {
     var net = dio.Dio();
@@ -37,6 +38,36 @@ class Reloadly {
           options: dio.Options(
             headers: {
               'Authorization': 'Bearer ' + tokenString,
+              'Content-type': 'application/json'
+            },
+          ));
+
+      print(token.toString());
+      Map<String, dynamic> map = json.decode(token.toString());
+      //balance.value =map["balance"].toString() ;
+      return map["balance"].toString();
+    } catch (error, stacktrace) {
+      throw Exception("Exception occured: $error stackTrace: $stacktrace");
+    }
+  }
+  Future<String> topUp(String tokenString) async {
+    var net = dio.Dio();
+    var body = {
+      "operatorId": "operatorId",
+      "amount": "client_secret",
+      "customIdentifier": "client_credentials",
+      "recipientPhone": "https://topups.reloadly.com",
+      "countryCode": "client_credentials",
+      "number": "https://topups.reloadly.com",
+      "senderPhone":"senderPhone"
+
+    };
+    try {
+      dio.Response token = await net.get(balanceUrl,
+          options: dio.Options(
+            headers: {
+              'Authorization': 'Bearer ' + tokenString,
+              "Accept": "application/com.reloadly.topups-v1+json",
               'Content-type': 'application/json'
             },
           ));
